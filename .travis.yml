@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true navi23/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-01"
+  app: "docker-react"
+  env: "docker-react-env"
+  bucket_name: "9"
+  bucket_path: "docker-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
